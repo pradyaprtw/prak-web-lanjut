@@ -99,7 +99,11 @@
             <input type="text" name="nama" id="nama" placeholder="Masukan nama anda" required>
             
             <label for="id_kelas">Kelas</label>
-            <input type="text" name="npm" id="npm" placeholder="Masukan kelas anda" required> 
+            <select name="kelas_id" id="kelas_id" required>
+                @foreach ($kelas as $kelasItem)
+                    <option value="{{ $kelasItem->id }}">{{ $kelasItem->nama_kelas }}</option>
+                @endforeach
+            </select>      
             
             <label for="npm">NPM</label>
             <input type="text" name="npm" id="npm" placeholder="Masukan NPM anda" required>
