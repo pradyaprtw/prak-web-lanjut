@@ -87,9 +87,9 @@
     <div class="form-container">
         <h2>Form</h2>
 
-        <form action="{{ route('user.store') }}" method="POST">
+        <form action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <label for="name">Nama</label>
+            <label for="nama">Nama</label>
             <input type="text" name="nama" id="nama" placeholder="Masukan nama anda" required>
             
             <label for="id_kelas">Kelas</label>
@@ -102,6 +102,8 @@
             <label for="npm">NPM</label>
             <input type="text" name="npm" id="npm" placeholder="Masukan NPM anda" required>
             
+            <label for="foto">Foto:</label>
+            <input type="file" id="foto" name="foto"><br><br>
 
             <button type="submit">Kirim</button>
         </form>

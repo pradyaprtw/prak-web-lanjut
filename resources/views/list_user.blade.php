@@ -82,6 +82,7 @@
             
             <div class="table-container">
                 <div class="table-responsive">
+                    <a href="{{ route('user.create') }}" class="btn btn-primary mb-3">Tambah Pengguna Baru</a>
                     <table class="table table-hover">
                         <thead>
                             <tr>
@@ -89,22 +90,27 @@
                                 <th>Nama</th>
                                 <th>Kelas</th>
                                 <th>NPM</th>
+                                <th>Foto</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($users as $user): ?>
+                            @foreach($users as $user)
                             <tr>
-                                <td><?= $user['id'] ?></td>
-                                <td><?= $user['nama'] ?></td>
-                                <td><?= $user['nama_kelas'] ?></td>    
-                                <td><?= $user['npm'] ?></td>
+                                <td>{{ $user->id }}</td>
+                                <td>{{ $user->nama }}</td>
+                                <td>{{ $user->nama_kelas }}</td>    
+                                <td>{{ $user->npm }}</td>
                                 <td>
+                                    <img src="{{ asset('storage/uploads/'.$user->foto) }}" alt="foto user" width="100">
+                                </td>
+                                <td>
+                                    <a href="{{ route('user.show', $user->id) }}" class="btn btn-warning mb-3">Detail</a>
                                     <button class="btn btn-sm btn-pink-outline">Edit</button>
                                     <button class="btn btn-sm btn-pink-outline">Hapus</button>
                                 </td>
                             </tr>
-                            <?php endforeach; ?>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

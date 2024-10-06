@@ -19,9 +19,9 @@ class UserController extends Controller
 
     public function index(){
         $data = [
-            'title' => 'Create User',
+            'title' => 'List User',
             'users' => $this->userModel->getUser(),
-            'kelas' => $this->userModel->getUser(),
+            // 'kelas' => $this->userModel->getUser(),
         ];
 
         return view ('list_user', $data);
@@ -43,13 +43,31 @@ class UserController extends Controller
     }
 
     public function store(Request $request){
-        $this->userModel->create([
-            'nama' => $request->input('nama'),
-            'kelas_id' => $request->input('kelas_id'),         
-            'npm' => $request->input('npm'),
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'kelas_id' => 'required|exists:kelas,id',
+            'npm' => 'required|string|max:255',
+            'foto' => 'file|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        return redirect()->to('/user');
+        if ($request->hasFile('foto')) {
+            $file = $request->file('foto');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->storeAs('upload', $filename, 'public');
+
+            $this->userModel->create([
+                'nama' => $request->input('nama'),
+                'npm' => $request->input('npm'),
+                'kelas_id' => $request->input('kelas_id'), 
+                'foto' => $filename,        
+            ]);
+
+            
+        }
+
+        // return redirect()->to('/user/list');
+
+        return redirect()->to('/user')->with('success', 'User berhasil ditambahkan');
 
         // $user = UserModel::create($validatedData);
 
@@ -61,4 +79,23 @@ class UserController extends Controller
         //     'npm' => $user->npm,
         // ]);
     }
+
+    public function show($id)
+{
+    $user = $this->userModel->getUser($id);
+
+    if (!$user) {
+        return redirect()->route('user.index')->with('error', 'User tidak ditemukan');
+    }
+
+    $data = [
+        'title' => 'Profile',
+        'nama' => $user->nama,
+        'nama_kelas' => $user->nama_kelas,
+        'npm' => $user->npm,
+        'foto' => $user->foto
+    ];
+    
+    return view('profile', $data);
+}
 }
