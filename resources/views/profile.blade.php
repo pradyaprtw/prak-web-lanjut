@@ -74,7 +74,7 @@
             <tr>
                 <td>Kelas</td>
                 <td>:</td>
-                <td><?= $kelas ?></td>
+                <td>{{$nama_kelas ?? 'Kelas tidak ditemukan'}}</td>
             </tr><br>
             <tr>
                 <td>NPM</td>
