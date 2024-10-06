@@ -31,12 +31,13 @@
             border-radius: 50%;
             background-color: #ddd;
             margin: 0 auto 20px;
+            overflow: hidden;
         }
 
         .profile-img img {
             width: 100%;
             height: 100%;
-            border-radius: 50%;
+            object-fit: cover; /* Ensures image fits inside the circle without distortion */
         }
 
         .profile-info {
@@ -59,6 +60,12 @@
         .profile-info td:last-child {
             color: #3c4858;
         }
+
+        .photo-display img {
+            width: 100px;  /* New size for the displayed user photo */
+            height: 100px; /* New size for the displayed user photo */
+            object-fit: cover; /* Ensures image fits nicely */
+        }
     </style>
 </head>
 <body>
@@ -66,21 +73,30 @@
         <div class="profile-img">
             <img src="https://cdn-icons-png.flaticon.com/512/6997/6997662.png" alt="Profile Image">
         </div>
+
+        <table class="profile-info">
             <tr>
                 <td>Nama</td>
                 <td>:</td>
-                <td><?= $nama ?></td>
-            </tr><br>
+                <td>{{ $nama }}</td>
+            </tr>
             <tr>
                 <td>Kelas</td>
                 <td>:</td>
-                <td>{{$nama_kelas ?? 'Kelas tidak ditemukan'}}</td>
-            </tr><br>
+                <td>{{ $nama_kelas ?? 'Kelas tidak ditemukan'}}</td>
+            </tr>
             <tr>
                 <td>NPM</td>
                 <td>:</td>
-                <td><?= $npm ?></td>
-            </tr><br>
+                <td>{{ $npm }}</td>
+            </tr>
+            <tr>
+                <td>Foto</td>
+                <td>:</td>
+                <td class="photo-display">
+                    <img src="{{ asset('storage/upload/' . $foto ?? "Foto tidak ditemukan") }}" alt="Profile Image">
+                </td>
+            </tr>
         </table>
     </div>
 </body>
