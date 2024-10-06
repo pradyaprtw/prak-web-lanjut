@@ -8,27 +8,57 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+
+    public $userModel;
+    public $kelasModel;
+
+    public function __construct(){
+        $this->userModel = new UserModel();
+        $this->kelasModel = new Kelas();
+    }
+
+    public function index(){
+        $data = [
+            'title' => 'Create User',
+            'users' => $this->userModel->getUser(),
+            'kelas' => $this->userModel->getUser(),
+        ];
+
+        return view ('list_user', $data);
+
+    }
+
     public function create(){
-        return view('create_user', [
-            'kelas' => Kelas::all(),
-        ]);
+
+        $kelasModel = new Kelas();
+
+        $kelas = $kelasModel->getKelas();
+
+        $data = [
+            'title' => 'Create User',
+            'kelas' => $kelas,
+        ];
+
+        return view('create_user', $data);
     }
 
     public function store(Request $request){
-        $validatedData = $request->validate([
-            'nama' => 'required|string|max:255',
-            'kelas_id' => 'required|exists:kelas,id',
-            'npm' => 'required|string|max:255',
+        $this->userModel->create([
+            'nama' => $request->input('nama'),
+            'kelas_id' => $request->input('kelas_id'),         
+            'npm' => $request->input('npm'),
         ]);
 
-        $user = UserModel::create($validatedData);
+        return redirect()->to('/user');
 
-        $user->load ('kelas');
+        // $user = UserModel::create($validatedData);
 
-        return view('profile', [
-            'nama' => $user->nama,
-            'nama_kelas' => $user->kelas->nama_kelas ?? 'Kelas tidak ditemukan',
-            'npm' => $user->npm,
-        ]);
+        // $user->load ('kelas');
+
+        // return view('profile', [
+        //     'nama' => $user->nama,
+        //     'nama_kelas' => $user->kelas->nama_kelas ?? 'Kelas tidak ditemukan',
+        //     'npm' => $user->npm,
+        // ]);
     }
 }

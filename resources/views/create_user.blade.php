@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+@extends('layouts.app')
+
+@section('content')
     <style>
         * {
             box-sizing: border-box;
@@ -103,14 +97,14 @@
                 @foreach ($kelas as $kelasItem)
                     <option value="{{ $kelasItem->id }}">{{ $kelasItem->nama_kelas }}</option>
                 @endforeach
-            </select>      
+            </select>     
             
             <label for="npm">NPM</label>
             <input type="text" name="npm" id="npm" placeholder="Masukan NPM anda" required>
             
+
             <button type="submit">Kirim</button>
         </form>
         
     </div>
-</body>
-</html>
+@endsection
