@@ -107,12 +107,16 @@
                                 <td>
                                     <a href="{{ route('user.show', $user->id) }}" class="btn btn-warning mb-3">Detail</a>
                                     <a href="{{ route('user.edit', $user->id) }}" class="btn btn-sm btn-pink-outline">Edit</a>
-                                    <form action="{{ route('user.destroy', $user['id']) }}" method="POST" style="display: inline-block">
+                                    <form id="deleteForm-{{ $user['id'] }}" 
+                                        action="{{ route('user.destroy', $user['id']) }}" 
+                                        method="POST" style="display: inline-block">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-pink-outline"
-                                            onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</button>
+                                        <button type="button" 
+                                                onclick="confirmDelete({{ $user['id'] }})" 
+                                                class="btn btn-sm btn-pink-outline">Hapus</button>
                                     </form>
+
                                 </td>
                             </tr>
                             @endforeach
