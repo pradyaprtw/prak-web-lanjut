@@ -94,27 +94,27 @@ button:active {
         <label for="nama">Nama</label>
         <input type="text" class="form-control" name="nama" id="nama" value="{{old('nama', $user->nama)}}"
             placeholder="Masukan nama anda" required>
-
-        <label for="id_kelas">Kelas</label>
-        <select name="kelas_id" id="kelas_id" required>
-            @foreach ($kelas as $kelasItem)
-            <option value="{{ $kelasItem->id }}">
-                {{ $kelasItem->id == $user->kelas_id ? 'selected' : '' }}
-                {{ $kelasItem->nama_kelas }}
-            </option>
-            @endforeach
-        </select>
-
-        <label for="npm">NPM</label>
-        <input type="text" class="form-control" name="npm" id="npm" value="{{old('npm', $user->npm)}}"
-            placeholder="Masukan NPM anda" required>
-
-        <label for="foto">Foto:</label>
-        <input type="file" id="foto" class="form-control" name="foto"><br><br>
-        @if($user->foto)
+            
+            <label for="id_kelas">Kelas</label>
+            <select name="kelas_id" id="kelas_id" required>
+                @foreach ($kelas as $kelasItem)
+                <option value="{{ $kelasItem->id }}">
+                    {{ $kelasItem->id == $user->kelas_id ? 'selected' : '' }}
+                    {{ $kelasItem->nama_kelas }}
+                </option>
+                @endforeach
+            </select>
+            
+            <label for="foto">Foto:</label>
+            <input type="file" id="foto" class="form-control" name="foto"><br><br>
+            @if($user->foto)
             <img src="{{ asset('storage/uploads/' . $user->foto) }}" alt="User Photo" width="100">
-        @endif
-        <button type="submit">Kirim</button>
+            @endif
+
+            <label for="ipk">IPK</label>
+            <input type="text" class="form-control" name="ipk" id="ipk" value="{{old('ipk', $user->ipk)}}"
+                placeholder="Masukan ipk anda" required>
+            <button type="submit">Kirim</button>
     </form>
 
 </div>

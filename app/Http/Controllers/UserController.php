@@ -47,8 +47,8 @@ class UserController extends Controller
         $request->validate([
             'nama' => 'required',
             'kelas_id' => 'required',
-            'npm' => 'required',
             'foto' => 'image|file|max:2048',
+            'ipk' => 'required',
         ]);
 
         // Proses upload foto
@@ -61,8 +61,8 @@ class UserController extends Controller
             $this->userModel->create([
                 'nama' => $request->input('nama'),
                 'kelas_id' => $request->input('kelas_id'),
-                'npm' => $request->input('npm'),
                 'foto' => $filename,
+                'ipk' => $request->input('ipk'),
             ]);
         }
 
@@ -77,7 +77,7 @@ class UserController extends Controller
         // return view('profile', [
         //     'nama' => $user->nama,
         //     'nama_kelas' => $user->kelas->nama_kelas ?? 'Kelas tidak ditemukan',
-        //     'npm' => $user->npm,
+        //     ,
         // ]);
     }
 
@@ -93,9 +93,9 @@ class UserController extends Controller
             'title' => 'Profile',
             'nama' => $user->nama,
             'nama_kelas' => $user->nama_kelas,
-            'npm' => $user->npm,
             'user' => $user,
-            'foto' => $user->foto
+            'foto' => $user->foto,
+            'ipk' => $user->ipk,
         ];
 
         return view('profile', $data);
@@ -115,7 +115,7 @@ class UserController extends Controller
         // Update data user lainnya
         $user->nama = $request->nama;
         $user->kelas_id = $request->kelas_id;
-        $user->npm = $request->npm;
+        $user->ipk = $request->ipk;
 
         // Cek apakah ada file foto yang di-upload
         if ($request->hasFile('foto')) {

@@ -66,9 +66,9 @@
 
 <body>
     <div class="profile-card">
-        <div class="profile-img">
+        {{-- <div class="profile-img">
             <img src="{{ asset('storage/uploads/'.$user->foto ?? "Foto tidak ditemukan") }}" alt="Profile Image" width="100">
-        </div>
+        </div> --}}
 
         <table class="profile-info">
             <tr>
@@ -76,15 +76,15 @@
                 <td>:</td>
                 <td>{{ $nama }}</td>
             </tr>
-            <tr>
+            {{-- <tr>
                 <td>Kelas</td>
                 <td>:</td>
                 <td>{{ $nama_kelas ?? 'Kelas tidak ditemukan'}}</td>
             </tr>
-            <tr>
-                <td>NPM</td>
+            <tr> --}}
+                <td>IPK</td>
                 <td>:</td>
-                <td>{{ $npm }}</td>
+                <td>{{ $ipk }}</td>
             </tr>
         </table>
     </div>

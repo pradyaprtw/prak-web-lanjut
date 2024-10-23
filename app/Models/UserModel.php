@@ -14,8 +14,8 @@ class UserModel extends Model
     protected $fillable = [
         'nama',
         'kelas_id',
-        'npm',
         'foto',
+        'ipk',
     ];
 
     public function kelas()

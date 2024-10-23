@@ -89,8 +89,8 @@
                                 <th>ID</th>
                                 <th>Nama</th>
                                 <th>Kelas</th>
-                                <th>NPM</th>
                                 <th>Foto</th>
+                                <th>IPK</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -100,10 +100,10 @@
                                 <td>{{ $user->id }}</td>
                                 <td>{{ $user->nama }}</td>
                                 <td>{{ $user->nama_kelas }}</td>
-                                <td>{{ $user->npm }}</td>
                                 <td>
                                     <img src="{{ asset('storage/uploads/'. $user->foto) }}" alt="foto user" width="100">
                                 </td>
+                                <td>{{ $user->ipk }}</td>
                                 <td>
                                     <a href="{{ route('user.show', $user->id) }}" class="btn btn-warning mb-3">Detail</a>
                                     <a href="{{ route('user.edit', $user->id) }}" class="btn btn-sm btn-pink-outline">Edit</a>
