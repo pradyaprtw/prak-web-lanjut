@@ -40,7 +40,8 @@
             margin-bottom: 8px;
         }
 
-        input[type="text"] {
+        input[type="text"],
+        input[type="number"] {
             width: 100%;
             padding: 10px;
             margin-bottom: 20px;
@@ -99,11 +100,11 @@
                 @endforeach
             </select>     
             
-            <label for="npm">NPM</label>
-            <input type="text" name="npm" id="npm" placeholder="Masukan NPM anda" required>
-            
             <label for="foto">Foto:</label>
             <input type="file" id="foto" name="foto"><br><br>
+
+            <label for="ipk">IPK</label>
+            <input type="text" name="ipk" id="ipk" placeholder="Masukan ipk anda" required>
 
             <button type="submit">Kirim</button>
         </form>
